@@ -1,10 +1,22 @@
-// const handleRoutes = (req,res) => {
-//   switch (req.url) {
-//     case "/login":
+const loginHandler = require("../login/index.login");
+const registerHandler = require("../register/index.register");
 
-//       break;
+const handleRoutes = (req, res) => {
+  switch (req.url) {
+    case "/login":
+      loginHandler(req, res);
+      break;
+    case "/register":
+      registerHandler(req, res);
+      break;
+    case "/":
+      res.end("Hellow world");
+      break;
 
-//     default:
-//       break;
-//   }
-// }
+    default:
+      res.end("Page not found");
+      break;
+  }
+};
+
+module.exports = handleRoutes;
