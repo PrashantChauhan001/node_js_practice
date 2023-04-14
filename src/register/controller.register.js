@@ -1,5 +1,5 @@
 const registerController = (req, res) => {
-  console.log("registerController");
+  console.log(req.body);
   res.end("register successful");
 };
 

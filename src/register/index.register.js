@@ -1,4 +1,4 @@
-const registerController = require("./register.controller");
+const registerController = require("./controller.register");
 
 const registerHandler = (req, res) => {
   if (req.method === "POST") {
