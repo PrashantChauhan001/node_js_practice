@@ -1,6 +1,9 @@
 const http = require("node:http");
+const path = require("node:path");
 const routeHandler = require("./routes");
 const { bodyParser } = require("./utils/helper.utils");
+
+global.appRoot = path.resolve(__dirname + "/..");
 
 const serverHandler = (req, res) => {
   bodyParser(req, res, routeHandler);

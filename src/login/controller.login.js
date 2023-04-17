@@ -1,6 +1,5 @@
 const loginController = (req, res) => {
-  console.log(req.url);
-  res.end("login post success");
+  res.end("login successful");
 };
 
 module.exports = loginController;

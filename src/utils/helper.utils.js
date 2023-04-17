@@ -7,11 +7,11 @@ const bodyParser = async (req, res, reqHandler) => {
       res.end("internal server error");
     })
     .on("data", (chunk) => {
-      console.log(chunk, "chunk");
+      // console.log(chunk, "chunk");
       bodyJson.push(chunk);
     })
     .on("end", () => {
-      console.log(bodyJson, "body");
+      // console.log(bodyJson, "body");
       req.body = Buffer.concat(bodyJson).toString();
       reqHandler(req, res);
     });
