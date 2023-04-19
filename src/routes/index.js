@@ -1,7 +1,7 @@
 const loginHandler = require("../login/index.login");
 const registerHandler = require("../register/index.register");
 
-const handleRoutes = (req, res) => {
+const routeHandler = (req, res) => {
   switch (req.url) {
     case "/login":
       loginHandler(req, res);
@@ -19,4 +19,4 @@ const handleRoutes = (req, res) => {
   }
 };
 
-module.exports = handleRoutes;
+module.exports = routeHandler;
