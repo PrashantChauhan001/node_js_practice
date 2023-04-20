@@ -1,5 +1,5 @@
 const { readFile, writeFile } = require("node:fs/promises");
-const { USERS_INFO_PATH } = require("../constant/fileRoute.constant");
+const { USERS_INFO_PATH } = require("../../constant/fileRoute.constant");
 const registerShema = require("./schema.register");
 
 const reqBodyValidation = (reqBody, userObj) => {
