@@ -2,8 +2,21 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const indexRoutes = require("./routes/index.routes");
+const morganLogger = require("morgan");
+const fs = require("fs");
+const path = require("path");
 
 const app = express();
+
+app.use(
+  morganLogger("dev", {
+    skip: (req, res) => res.statusCode < 400,
+    stream: fs.createWriteStream(path.join(__dirname, "logs/logger.log.txt"), {
+      flags: "a",
+    }),
+  }),
+  morganLogger("dev")
+);
 
 dotenv.config();
 // you can use cors with specific path with custum headers and
