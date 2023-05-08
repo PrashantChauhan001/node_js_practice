@@ -5,9 +5,11 @@ const indexRoutes = require("./routes/index.routes");
 const morganLogger = require("morgan");
 const fs = require("fs");
 const path = require("path");
+const connectDB = require("./config/database.config");
 
 const app = express();
 
+// for log the incomming request and
 app.use(
   morganLogger("dev", {
     skip: (req, res) => res.statusCode < 400,
@@ -17,6 +19,9 @@ app.use(
   }),
   morganLogger("dev")
 );
+
+// connect to db
+connectDB();
 
 dotenv.config();
 // you can use cors with specific path with custum headers and
