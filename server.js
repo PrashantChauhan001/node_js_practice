@@ -5,6 +5,9 @@ const app = express();
 
 dotenv.config();
 
+// add req's body stream into the req.body where content-type is json
+app.use(express.json());
+
 // contact route
 app.use("/api/contacts", require("./routes/contactsRoute"));
 
