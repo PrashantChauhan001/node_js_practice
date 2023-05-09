@@ -1,10 +1,10 @@
 const express = require("express");
-const dotenv = require("dotenv");
 const { errorHandler } = require("./middleware/errorHandler");
 
-const app = express();
+require("dotenv").config();
+require("./configs/dbConnection")();
 
-dotenv.config();
+const app = express();
 
 // add req's body stream into the req.body where content-type is json
 app.use(express.json());
