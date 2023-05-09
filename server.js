@@ -6,7 +6,7 @@ const app = express();
 dotenv.config();
 
 // contact route
-app.use("/api/contact", require("./routes/contactRoutes"));
+app.use("/api/contacts", require("./routes/contactsRoute"));
 
 app.get("/", (req, res) =>
   res.status(200).json({ message: "root of the apis" })
