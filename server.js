@@ -11,6 +11,7 @@ app.use(express.json());
 
 // contact route
 app.use("/api/contacts", require("./routes/contactsRoute"));
+app.use("/api/users", require("./routes/userRoute"));
 
 app.get("/", (req, res) =>
   res.status(200).json({ message: "root of the apis" })
