@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const { errorHandler } = require("./middleware/errorHandler");
 
 const app = express();
 
@@ -14,6 +15,9 @@ app.use("/api/contacts", require("./routes/contactsRoute"));
 app.get("/", (req, res) =>
   res.status(200).json({ message: "root of the apis" })
 );
+
+// error handler to handle all the error from the app
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 
