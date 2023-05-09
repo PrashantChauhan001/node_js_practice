@@ -10,6 +10,11 @@ const getContactsController = (req, res) => {
 // access public
 const createContactController = (req, res) => {
   console.log(req.body);
+  const { name, email, phone } = req.body;
+  if (!name || !email || !phone) {
+    req.status(400);
+    throw new Error("All fields are mendatory");
+  }
   res.status(200).json({ message: "Create contact" });
 };
 
