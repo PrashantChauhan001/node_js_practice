@@ -1,10 +1,10 @@
-const asyncHandler = require("express-async-handler");
 const ContactModel = require("../models/contactModel");
+const { asyncHandlerFunc } = require("../utils/asyncHandler");
 
 // @des Get all contacts
 // @route GET /api/contacts
 // @access public
-const getContactsController = asyncHandler(async (req, res) => {
+const getContactsController = asyncHandlerFunc(async (req, res) => {
   const contact = await ContactModel.find();
   res.status(200).json(contact);
 });
@@ -12,7 +12,7 @@ const getContactsController = asyncHandler(async (req, res) => {
 // @des Create contact
 // @route POST /api/contacts
 // access public
-const createContactController = asyncHandler(async (req, res) => {
+const createContactController = asyncHandlerFunc(async (req, res) => {
   const { name, email, phone } = req.body;
   if (!name || !email || !phone) {
     res.status(400);
@@ -25,7 +25,7 @@ const createContactController = asyncHandler(async (req, res) => {
 // @des Get contact
 // @route GET /api/contacts/:id
 // @access public
-const getContactController = asyncHandler(async (req, res) => {
+const getContactController = asyncHandlerFunc(async (req, res) => {
   const contact = await ContactModel.findById(req.params.id);
   if (!contact) {
     res.status(404);
@@ -37,7 +37,7 @@ const getContactController = asyncHandler(async (req, res) => {
 // @des Update contact
 // @route PUT /api/contacts/:id
 // @access public
-const updateContactController = asyncHandler(async (req, res) => {
+const updateContactController = asyncHandlerFunc(async (req, res) => {
   const contact = await ContactModel.findByIdAndUpdate(
     req.params.id,
     req.body,
@@ -51,7 +51,7 @@ const updateContactController = asyncHandler(async (req, res) => {
 // @des  Delete contact
 // @route DELETE /api/contacts/:id
 // @access public
-const deleteContactController = asyncHandler(async (req, res) => {
+const deleteContactController = asyncHandlerFunc(async (req, res) => {
   const contact = await ContactModel.findByIdAndDelete(req.params.id, {
     new: true,
   });
