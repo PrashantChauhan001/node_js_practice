@@ -1,7 +1,8 @@
 const userModel = require("../models/userModel");
 const bcrypt = require("bcrypt");
-jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const { asyncHandlerFunc } = require("../utils/asyncHandler");
+const { addMultipleRecords } = require("../utils/helper.utils");
 
 // @des login with credencials
 // @route GET /api/users/login
@@ -55,7 +56,25 @@ const registerController = asyncHandlerFunc(async (req, res) => {
 // @route GET /api/users/current
 // @access public
 const currentUserController = (req, res) => {
-  res.status(200).json({ messge: "Current user" });
+  res.status(200).json({ message: "Current user" });
 };
 
-module.exports = { loginController, registerController, currentUserController };
+// @des insert users with cron job
+// @route POSR /api/users/cron-job
+// @access public
+const cronJobController = asyncHandlerFunc(async (req, res) => {
+  const { secretText, password, count = 10 } = req.body;
+  if (secretText !== "test-secret" || password !== "Prashant@123") {
+    res.status(400);
+    throw new Error("Request body is not proper");
+  }
+  await addMultipleRecords(count);
+  res.status(200).json({ message: `${count} Users Created` });
+});
+
+module.exports = {
+  loginController,
+  registerController,
+  currentUserController,
+  cronJobController,
+};
