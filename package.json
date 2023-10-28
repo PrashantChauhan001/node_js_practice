@@ -2,13 +2,20 @@
   "name": "authentication",
   "version": "1.0.0",
   "description": "node authentication api",
-  "main": "index.js",
+  "main": "./src/index.js",
+  "type": "commonjs",
   "scripts": {
-    "start": "nodemon ./src/index.js"
+    "start": "set NODE_PATH=.&& node ./src/index.js",
+    "dev": "set NODE_PATH=.&& nodemon ./src/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "nodemon": "^2.0.22"
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.6.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
