@@ -32,6 +32,7 @@ const errorHandler = (err, req, res, next) => {
 
     default:
       jsonObj.title = "Server Error";
+      res.statusCode = SERVER_ERROR;
       res.json(jsonObj);
       break;
   }

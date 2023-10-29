@@ -13,7 +13,7 @@ const addTask = asyncHandler(async (req, res) => {
 
 const getTask = asyncHandler(async (req, res) => {
   const { taskId } = req.params;
-  const taskDetail = await Task.findOne({ _id: taskId });
+  const taskDetail = await Task.findById(taskId);
   if (taskDetail) {
     res.status(200).json(taskDetail);
   } else {
@@ -31,12 +31,21 @@ const updateTask = asyncHandler((req, res) => {
   });
 });
 
-const deleteTask = asyncHandler((req, res) => {
+const deleteTask = asyncHandler(async (req, res) => {
   const { taskId } = req.params;
-  res.status(200).json({
-    message: `Deleted task ${taskId}`,
-    taskId,
-  });
+
+  const taskDetail = await Task.findOneAndDelete({ _id: taskId });
+  if (taskDetail) {
+    res.status(200).json({
+      message: `${taskId} task deleted.`,
+      taskDetail,
+    });
+  } else {
+    res.status(400).json({
+      message: `${taskId} task not found.`,
+      taskId,
+    });
+  }
 });
 
 module.exports = {
