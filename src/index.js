@@ -1,8 +1,9 @@
 require("dotenv").config();
 
 const express = require("express");
-const connectToMongo = require("./configs/db.configs");
-const tasksRouter = require("./routes/tasks.routes");
+const connectToMongo = require("src/configs/db.configs");
+const tasksRouter = require("src/routes/tasks.routes");
+const { errorHandler } = require("src/middlewares/errorHandler.middlewares");
 
 const app = express();
 
@@ -17,6 +18,8 @@ app.use("/api/v1/tasks", tasksRouter);
 app.get("/tasks", (req, res) => {
   res.status(200).send("This is tasks get route");
 });
+
+app.use(errorHandler);
 
 const startServer = () => {
   console.log("DB is connected to the app");
