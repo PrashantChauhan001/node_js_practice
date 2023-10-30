@@ -22,12 +22,15 @@ const getTask = asyncHandler(async (req, res) => {
   }
 });
 
-const updateTask = asyncHandler((req, res) => {
+const updateTask = asyncHandler(async (req, res) => {
   const { taskId } = req.params;
+  const taskDetail = await Task.findByIdAndUpdate(taskId, req.body, {
+    new: true,
+    runValidators: true,
+  });
   res.status(200).json({
     message: `Get task details of task ${taskId}`,
-    taskId,
-    ...req.body,
+    data: taskDetail,
   });
 });
 

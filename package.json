@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "node authentication api",
   "main": "./src/index.js",
-  "type": "commonjs",
   "scripts": {
     "start": "set NODE_PATH=.&& node ./src/index.js",
-    "dev": "set NODE_PATH=.&& nodemon ./src/index.js"
+    "dev:windows": "set NODE_PATH=.&& nodemon ./src/index.js",
+    "dev:ubuntu": "NODE_PATH=. nodemon ./src/index.js"
   },
   "author": "",
   "license": "ISC",

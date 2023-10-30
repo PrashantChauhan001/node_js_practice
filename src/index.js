@@ -4,6 +4,7 @@ const express = require("express");
 const connectToMongo = require("src/configs/db.configs");
 const tasksRouter = require("src/routes/tasks.routes");
 const { errorHandler } = require("src/middlewares/errorHandler.middlewares");
+const notFoundHandler = require("./middlewares/notFound.middlewares");
 
 const app = express();
 
@@ -16,10 +17,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1/tasks", tasksRouter);
 
-app.get("/tasks", (req, res) => {
-  res.status(200).send("This is tasks get route");
-});
-
+app.use(notFoundHandler);
 app.use(errorHandler);
 
 const startServer = () => {
